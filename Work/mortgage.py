@@ -17,9 +17,10 @@ def set_extra_payment(start, end, extra, payment=2684.11):
 while principal > 0:
     payment = set_extra_payment(61, 108, 1000)
 
-    # print(payment, months)
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
+
+    print(months, round(total_paid, 2), round(principal, 2))
 
     months = months + 1
 
