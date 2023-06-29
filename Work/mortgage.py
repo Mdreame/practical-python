@@ -14,11 +14,6 @@ def set_extra_payment(start, end, extra, payment=2684.11):
 
     return  payment
 
-def serialize_principal(float_number):
-    if float_number < 0:
-        float_number = 0
-
-    return round(float_number, 2)
 
 while principal > 0:
     payment = set_extra_payment(61, 108, 1000)
@@ -26,11 +21,14 @@ while principal > 0:
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
 
-    print(months,
-          serialize_principal(total_paid),
-          serialize_principal(principal))
+    # Python中的选择运算符, 此处为表达式
+    result = f'{months:^3} \
+        {total_paid:>9.2f} \
+        {0 if principal < 0 else principal :0.2f}'
+
+    print(result)
 
     months = months + 1
 
-print('Total paid', total_paid)
+print(f'Total{total_paid:>16.2f}')
 
