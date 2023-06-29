@@ -14,13 +14,21 @@ def set_extra_payment(start, end, extra, payment=2684.11):
 
     return  payment
 
+def serialize_principal(float_number):
+    if float_number < 0:
+        float_number = 0
+
+    return round(float_number, 2)
+
 while principal > 0:
     payment = set_extra_payment(61, 108, 1000)
 
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
 
-    print(months, round(total_paid, 2), round(principal, 2))
+    print(months,
+          serialize_principal(total_paid),
+          serialize_principal(principal))
 
     months = months + 1
 
