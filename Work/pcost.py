@@ -2,6 +2,8 @@
 #
 # Exercise 1.27
 import csv
+import sys
+
 
 def portfolio_cost(file):
     try:
@@ -18,5 +20,12 @@ def portfolio_cost(file):
     except FileNotFoundError:
         print('no such file: %s' % file)
 
-cost = portfolio_cost('Data/portfolio.csv')
-print('Total cost', cost)
+if len(sys.argv) == 2:
+    file = sys.argv[1]
+else:
+    file = 'Data/portfolio.csv' 
+
+cost = portfolio_cost(file)
+
+if cost:
+    print('Total cost', cost)
